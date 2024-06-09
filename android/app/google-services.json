@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "591579254309",
+    "project_id": "gla-certificate",
+    "storage_bucket": "gla-certificate.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:591579254309:android:8c6c9c54a3542d5b2ff9cc",
+        "android_client_info": {
+          "package_name": "com.example.gla_certificate"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB4f9CwEHCXQcqWM-ExzhlLRMKS1PBwplo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
