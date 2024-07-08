@@ -14,7 +14,8 @@ class _SplashState extends State<Splash> {
   @override
   void initState() {
     super.initState();
-    splashscreen.islogin(context);
+    SplashServices.isFirstTime(context: context);
+    // splashscreen.islogin(context);
   }
 
   @override

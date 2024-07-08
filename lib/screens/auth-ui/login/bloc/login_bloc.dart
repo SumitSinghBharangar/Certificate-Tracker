@@ -6,7 +6,7 @@ import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:gla_certificate/repositories/login_repository.dart';
 
-import '../../utils/enum.dart';
+import '../../../../utils/enum.dart';
 part 'login_event.dart';
 part 'login_state.dart';
 

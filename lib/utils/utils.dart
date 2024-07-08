@@ -2,6 +2,7 @@ import 'package:another_flushbar/flushbar.dart';
 import 'package:another_flushbar/flushbar_route.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class Utils {
   static void fieldfocuschange(
@@ -47,5 +48,25 @@ class Utils {
       ),
       backgroundColor: Colors.black,
     ));
+  }
+
+  static Future<bool> requestPermission() async {
+    var status1 = await Permission.storage.status;
+
+    if (status1.isGranted) {
+      return true;
+    } else {
+      Map<Permission, PermissionStatus> statuses = await [
+        Permission.storage,
+        Permission.manageExternalStorage,
+      ].request();
+      var temp1 = await Permission.storage.status;
+      var manageStorageStatus = await Permission.manageExternalStorage.status;
+      if (temp1.isGranted || manageStorageStatus.isGranted) {
+        return true;
+      } else {
+        return false;
+      }
+    }
   }
 }
