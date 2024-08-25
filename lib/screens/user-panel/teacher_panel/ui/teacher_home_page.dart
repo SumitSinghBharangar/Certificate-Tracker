@@ -1,16 +1,17 @@
-
-
 import 'package:bounce/bounce.dart';
 
 import 'package:expansion_tile_card/expansion_tile_card.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:gla_certificate/screens/auth-ui/login/ui/login_screen_view.dart';
 import 'package:gla_certificate/screens/user-panel/teacher_panel/bloc/bloc/teacher_page_bloc.dart';
 import 'package:gla_certificate/screens/user-panel/teacher_panel/ui/doc_open_page.dart';
 import 'package:gla_certificate/utils/components/list_component.dart';
 import 'package:gla_certificate/utils/enum.dart';
-
 
 class THomePage extends StatefulWidget {
   const THomePage({super.key});
@@ -27,10 +28,24 @@ class _THomePageState extends State<THomePage> {
       appBar: AppBar(
         title: const Text("Teacher Home Page"),
         centerTitle: true,
+        actions: [
+          IconButton(
+              onPressed: () async {
+                await FirebaseAuth.instance.signOut();
+                await Navigator.pushReplacement(
+                    context,
+                    CupertinoPageRoute(
+                        builder: (context) => const LoginScreen()));
+                        Fluttertoast.showToast(msg: "Succesfully Signout");
+              },
+              icon: Icon(Icons.logout))
+        ],
       ),
       body: SafeArea(
           child: BlocProvider(
-        create: (context) => TeacherPageBloc()..add(FetchStudentList())..add(FetchTeacherNameEvent()),
+        create: (context) => TeacherPageBloc()
+          ..add(FetchStudentList())
+          ..add(FetchTeacherNameEvent()),
         child: BlocBuilder<TeacherPageBloc, TeacherPageState>(
             builder: (context, state) {
           if (state.teacherPageStatus == TeacherPageStatus.loading) {
